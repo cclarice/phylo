@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/25 00:39:13  /  2021/06/25 00:39:15 @cclarice   */
+/*   Created/Updated: 2021/06/25 00:53:08  /  2021/06/25 00:53:08 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,4 @@
 #ifndef PUSHSWAP_H
 # define PUSHSWAP_H
 
-# include
+# include <pthread.h>
