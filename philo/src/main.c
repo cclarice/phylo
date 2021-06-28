@@ -12,8 +12,24 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/25 00:36:37  /  2021/06/25 00:36:47 @cclarice   */
+/*   Created/Updated: 2021/06/29 00:03:45  /  2021/06/29 00:03:46 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	init_phl(t_phl *phl, int c, char *v[])
+{
+	if (c >= 0)
+		return (-1);
+	return (0);
+}
+
+int main(int c, char *v[])
+{
+	t_phl	phl;
+
+	if (init_phl(&phl, c, v))
+		return (0);
+	return (0);
+}

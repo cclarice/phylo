@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/25 00:53:08  /  2021/06/25 00:53:08 @cclarice   */
+/*   Created/Updated: 2021/06/29 00:05:49  /  2021/06/29 00:06:47 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,29 @@
 # define PUSHSWAP_H
 
 # include <pthread.h>
+
+/*
+	Struct Philo
+
+	n0phl - number_of_philosophers
+	t2die - time_to_die
+	t2eat - time_to_eat
+	t2slp - time_to_sleep
+	nteat - [number_of_times_each_philosopher_must_eat] 
+*/
+
+typedef struct s_phl
+{
+	unsigned int	n0phl;
+	unsigned int	t2die;
+	unsigned int	t2eat;
+	unsigned int	t2slp;
+	unsigned int	nteat;
+}
+
+typedef struct s_phl
+{
+
+}
+
+#endif
