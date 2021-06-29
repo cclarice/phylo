@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/29 18:29:03  /  2021/06/29 18:29:09 @cclarice   */
+/*   Created/Updated: 2021/06/29 23:29:59  /  2021/06/29 23:34:21 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,19 @@
 # define E_ANN "Error: One of arguments is not unsigned number\n"
 # define E_MAE "Error: Memory allocate error\n"
 
+# include <sys/time.h>
 # include <pthread.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 typedef struct s_elm
 {
-	unsigned int	t2die;
+	struct timeval	time;
 	unsigned int	n0eat;
 	unsigned int	id;
-	struct s_phl	*phl;
+	unsigned int	fid[2];
+	struct s_phl	*p;
 }				t_elm;
 
 /*
@@ -68,6 +71,10 @@ typedef struct s_phl
 	unsigned int	t2slp;
 	unsigned int	n0eat;
 	unsigned int	*frks;
+	pthread_mutex_t *mfrk;
+	pthread_mutex_t mwrt;
+	struct timeval	time;
+	pthread_t		*thrd;
 	t_elm			*phls;
 }				t_phl;
 
@@ -76,11 +83,11 @@ void	philo(t_phl *phl);
 
 
 // Write
-void	s_frk(unsigned int time, unsigned int phl);
-void	s_eat(unsigned int time, unsigned int phl);
-void	s_slp(unsigned int time, unsigned int phl);
-void	s_thk(unsigned int time, unsigned int phl);
-void	s_die(unsigned int time, unsigned int phl);
+void	s_frk(suseconds_t time, unsigned int id, t_phl *phl);
+void	s_eat(suseconds_t time, unsigned int id, t_elm *elm, t_phl *phl);
+void	s_slp(suseconds_t time, unsigned int id, t_phl *phl);
+void	s_thk(suseconds_t time, unsigned int id, t_phl *phl);
+void	s_die(suseconds_t time, unsigned int id, t_phl *phl);
 
 // Utils
 void	ft_putuint(int i);

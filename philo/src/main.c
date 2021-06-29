@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/29 18:28:05  /  2021/06/29 18:29:14 @cclarice   */
+/*   Created/Updated: 2021/06/30 00:39:26  /  2021/06/30 00:39:30 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,30 @@ int	alloc_phl(t_phl *phl)
 {
 	unsigned int p;
 
-	p = phl->n0phl;
+	phl->mfrk = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * phl->n0phl);
 	phl->frks = (unsigned int *)malloc(sizeof(unsigned int) * phl->n0phl);
 	phl->thrd = (pthread_t *)malloc(sizeof(pthread_t) * phl->n0phl);
 	phl->phls = (t_elm *)malloc(sizeof(t_elm) * phl->n0phl);
-	if (!phl->frks || !phl->thrd || !phl->phls)
+	pthread_mutex_init(&phl->mwrt, NULL);
+	if (!phl->mfrk || !phl->frks || !phl->thrd || !phl->phls)
 		return (write(1, E_MAE, ft_strlen(E_MAE)));
-	while (p)
+	p = 0;
+	while (p != phl->n0phl)
 	{
-		phl->frks[p - 1] = p;
-		phl->phls[p - 1].t2die = phl->t2die;
-		phl->phls[p - 1].n0eat = phl->n0eat;
-		phl->phls[p - 1].id = p;
-		p--;
+		phl->frks[p] = 1;
+		phl->phls[p].n0eat = phl->n0eat;
+		phl->phls[p].id = p + 1;
+		phl->phls[p].p = phl;
+		phl->phls[p].fid[0] = p;
+		if (p != 0)
+			phl->phls[p].fid[1] = p - 1;
+		else
+			phl->phls[p].fid[1] = phl->n0phl - 1;
+		pthread_mutex_init(&phl->mfrk[p], NULL);
+		p++;
 	}
+	phl->time.tv_sec = 0;
+	phl->time.tv_usec = 0;
 	return (0);
 }
 

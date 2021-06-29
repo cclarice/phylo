@@ -12,44 +12,39 @@
 /*                                                                            */
 /*   write.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/29 17:54:53  /  2021/06/29 17:55:26 @cclarice   */
+/*   Created/Updated: 2021/06/30 00:49:45  /  2021/06/30 01:06:15 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	s_frk(unsigned int time, unsigned int phl)
+void	s_frk(suseconds_t time, unsigned int id, t_phl *phl)
 {
-	ft_putuint(time);
-	write(1, " ", 1);
-	ft_putuint(phl);
-	write(1, "has taken a fork\n", 17);
+	pthread_mutex_lock(&phl->mwrt);
+	printf("%-10u %u has taken a fork\n", time, id);
+	pthread_mutex_unlock(&phl->mwrt);
 }
-void	s_eat(unsigned int time, unsigned int phl)
+void	s_eat(suseconds_t time, unsigned int id, t_elm *elm, t_phl *phl)
 {
-	ft_putuint(time);
-	write(1, " ", 1);
-	ft_putuint(phl);
-	write(1, "is eating\n", 10);
+	pthread_mutex_lock(&phl->mwrt);
+	gettimeofday(&elm->time, NULL);
+	printf("%-10u %u is eating\n", time, id);
+	pthread_mutex_unlock(&phl->mwrt);
 }
-void	s_slp(unsigned int time, unsigned int phl)
+void	s_slp(suseconds_t time, unsigned int id, t_phl *phl)
 {
-	ft_putuint(time);
-	write(1, " ", 1);
-	ft_putuint(phl);
-	write(1, "is sleeping\n", 12);
+	pthread_mutex_lock(&phl->mwrt);
+	printf("%-10u %u is sleeping\n", time, id);
+	pthread_mutex_unlock(&phl->mwrt);
 }
-void	s_thk(unsigned int time, unsigned int phl)
+void	s_thk(suseconds_t time, unsigned int id, t_phl *phl)
 {
-	ft_putuint(time);
-	write(1, " ", 1);
-	ft_putuint(phl);
-	write(1, "is thinking\n", 12);
+	pthread_mutex_lock(&phl->mwrt);
+	printf("%-10u %u is thinking\n", time, id);
+	pthread_mutex_unlock(&phl->mwrt);
 }
-void	s_die(unsigned int time, unsigned int phl)
+void	s_die(suseconds_t time, unsigned int id, t_phl *phl)
 {
-	ft_putuint(time);
-	write(1, " ", 1);
-	ft_putuint(phl);
-	write(1, "died\n", 5);
+	printf("%-10u %u died\n", time, id);
+	phl->t2die = 0;
 }
