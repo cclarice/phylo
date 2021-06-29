@@ -12,18 +12,30 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/29 17:05:28  /  2021/06/29 17:05:29 @cclarice   */
+/*   Created/Updated: 2021/06/29 18:28:05  /  2021/06/29 18:29:14 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	alloc_phl(t_phl *phl, int c, char *v[])
+int	alloc_phl(t_phl *phl)
 {
+	unsigned int p;
+
+	p = phl->n0phl;
 	phl->frks = (unsigned int *)malloc(sizeof(unsigned int) * phl->n0phl);
+	phl->thrd = (pthread_t *)malloc(sizeof(pthread_t) * phl->n0phl);
 	phl->phls = (t_elm *)malloc(sizeof(t_elm) * phl->n0phl);
-	if (!phl->frks || !phl->phl)
+	if (!phl->frks || !phl->thrd || !phl->phls)
 		return (write(1, E_MAE, ft_strlen(E_MAE)));
+	while (p)
+	{
+		phl->frks[p - 1] = p;
+		phl->phls[p - 1].t2die = phl->t2die;
+		phl->phls[p - 1].n0eat = phl->n0eat;
+		phl->phls[p - 1].id = p;
+		p--;
+	}
 	return (0);
 }
 
@@ -53,7 +65,8 @@ int main(int c, char *v[])
 
 	if (init_phl(&phl, c, v))
 		return (-1);
-	if (alloc_phl(&phl, c, v))
-		returb (-1);
+	if (alloc_phl(&phl))
+		return (-1);
+	philo(&phl);
 	return (0);
 }

@@ -10,71 +10,46 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   utils.c                                  cclarice@student.21-school.ru   */
+/*   write.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/29 17:53:02  /  2021/06/29 17:55:58 @cclarice   */
+/*   Created/Updated: 2021/06/29 17:54:53  /  2021/06/29 17:55:26 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_putchar(const char c)
+void	s_frk(unsigned int time, unsigned int phl)
 {
-	write(1, &c, 1);
+	ft_putuint(time);
+	write(1, " ", 1);
+	ft_putuint(phl);
+	write(1, "has taken a fork\n", 17);
 }
-
-void	ft_putuint(int i)
+void	s_eat(unsigned int time, unsigned int phl)
 {
-	if (i / 10)
-		ft_putuint(i / 10);
-	ft_putchar(i % 10 + '0');
+	ft_putuint(time);
+	write(1, " ", 1);
+	ft_putuint(phl);
+	write(1, "is eating\n", 10);
 }
-
-int ft_strlen(const char *str)
+void	s_slp(unsigned int time, unsigned int phl)
 {
-	int p;
-
-	p = 0;
-	while (str[p])
-		p++;
-	return (p);
+	ft_putuint(time);
+	write(1, " ", 1);
+	ft_putuint(phl);
+	write(1, "is sleeping\n", 12);
 }
-
-int	not_num(const char *str)
+void	s_thk(unsigned int time, unsigned int phl)
 {
-	int p;
-
-	p = 0;
-	while (str[p])
-	{
-		if (str[p] < '0' || str[p] > '9')
-			return (1);
-		p++;
-	}
-	return (0);
+	ft_putuint(time);
+	write(1, " ", 1);
+	ft_putuint(phl);
+	write(1, "is thinking\n", 12);
 }
-
-int	ft_atoi(const char *str)
+void	s_die(unsigned int time, unsigned int phl)
 {
-	const char	sgn = 1 - (*str == '-') * 2;
-	int			ret;
-
-	ret = 0;
-	str += (*str == '-' || *str == '+');
-	while (*str == '0')
-		str++;
-	while ((*str >= '0' && *str <= '9' && ret <= 214748363)
-		|| (*str >= '0' && *str <= '7' && ret == 214748364))
-	{
-		ret *= 10;
-		ret += *str - '0';
-		str++;
-	}
-	if (*str >= '0' && *str <= '9')
-	{
-		if (sgn == 1)
-			return (2147483647);
-		return (-2147483648);
-	}
-	return (ret * sgn);
+	ft_putuint(time);
+	write(1, " ", 1);
+	ft_putuint(phl);
+	write(1, "died\n", 5);
 }

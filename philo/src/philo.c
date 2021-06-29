@@ -10,71 +10,58 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   utils.c                                  cclarice@student.21-school.ru   */
+/*   philo.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/29 17:53:02  /  2021/06/29 17:55:58 @cclarice   */
+/*   Created/Updated: 2021/06/29 18:14:23  /  2021/06/29 18:14:32 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_putchar(const char c)
+int		all_alive(t_phl *phl)
 {
-	write(1, &c, 1);
-}
+	unsigned int p;
 
-void	ft_putuint(int i)
-{
-	if (i / 10)
-		ft_putuint(i / 10);
-	ft_putchar(i % 10 + '0');
-}
-
-int ft_strlen(const char *str)
-{
-	int p;
-
-	p = 0;
-	while (str[p])
-		p++;
-	return (p);
-}
-
-int	not_num(const char *str)
-{
-	int p;
-
-	p = 0;
-	while (str[p])
+	p = phl->n0phl;
+	while (p)
 	{
-		if (str[p] < '0' || str[p] > '9')
+		if (phl->phls[p - 1].t2die == 0)
+			return (0);
+		p--;
+	}
+	return (1);
+}
+
+int		all_n0eat(t_phl *phl)
+{
+	unsigned int p;
+
+	p = phl->n0phl;
+	while (p)
+	{
+		if (phl->phls[p - 1].n0eat)
 			return (1);
-		p++;
+		p--;
 	}
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+void	*philo_thread(void *p_phl)
 {
-	const char	sgn = 1 - (*str == '-') * 2;
-	int			ret;
+	const t_phl	*phl = (t_phl *)p_phl;
 
-	ret = 0;
-	str += (*str == '-' || *str == '+');
-	while (*str == '0')
-		str++;
-	while ((*str >= '0' && *str <= '9' && ret <= 214748363)
-		|| (*str >= '0' && *str <= '7' && ret == 214748364))
+	
+	return (NULL);
+}
+
+void	philo(t_phl *phl)
+{
+	unsigned int p;
+
+	p = 0;
+	while (p != phl->n0phl)
 	{
-		ret *= 10;
-		ret += *str - '0';
-		str++;
+		pthread_create(&phl->thrd[p], NULL, philo_thread, &phl);
+		p++;
 	}
-	if (*str >= '0' && *str <= '9')
-	{
-		if (sgn == 1)
-			return (2147483647);
-		return (-2147483648);
-	}
-	return (ret * sgn);
 }

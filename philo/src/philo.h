@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/29 17:04:50  /  2021/06/29 17:08:13 @cclarice   */
+/*   Created/Updated: 2021/06/29 18:29:03  /  2021/06/29 18:29:09 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,14 @@
 
 # include <pthread.h>
 # include <unistd.h>
+# include <stdlib.h>
 
 typedef struct s_elm
 {
 	unsigned int	t2die;
-	unsigned int	noeat[2];
+	unsigned int	n0eat;
+	unsigned int	id;
+	struct s_phl	*phl;
 }				t_elm;
 
 /*
@@ -68,7 +71,19 @@ typedef struct s_phl
 	t_elm			*phls;
 }				t_phl;
 
-void	ft_putint(int i);
+// Philo
+void	philo(t_phl *phl);
+
+
+// Write
+void	s_frk(unsigned int time, unsigned int phl);
+void	s_eat(unsigned int time, unsigned int phl);
+void	s_slp(unsigned int time, unsigned int phl);
+void	s_thk(unsigned int time, unsigned int phl);
+void	s_die(unsigned int time, unsigned int phl);
+
+// Utils
+void	ft_putuint(int i);
 int 	ft_strlen(const char *str);
 int		not_num(const char *str);
 int		ft_atoi(const char *str);

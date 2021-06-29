@@ -12,7 +12,7 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/06/29 16:38:06  /  2021/06/29 16:38:13 @cclarice    #
+#    Created/Updated: 2021/06/29 17:41:24  /  2021/06/29 17:54:49 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ HEAD = src/philo.h
 
 # Sources
 SRCF = src
-SRC  = main.c utils.c
+SRC  = main.c utils.c philo.c write.c
 SRCS = $(addprefix $(SRCF)/, $(SRC))
 
 # Objects
