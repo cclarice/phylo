@@ -10,50 +10,82 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   main.c                                   cclarice@student.21-school.ru   */
+/*   utils.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/29 17:05:28  /  2021/06/29 17:05:29 @cclarice   */
+/*   Created/Updated: 2021/06/29 16:22:38  /  2021/06/29 16:22:39 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	alloc_phl(t_phl *phl, int c, char *v[])
+void	ft_putchar(const char c)
 {
-	phl->frks = (unsigned int *)malloc(sizeof(unsigned int) * phl->n0phl);
-	phl->phls = (t_elm *)malloc(sizeof(t_elm) * phl->n0phl);
-	if (!phl->frks || !phl->phl)
-		return (write(1, E_MAE, ft_strlen(E_MAE)));
-	return (0);
+	write(1, &c, 1);
 }
 
-int	init_phl(t_phl *phl, int c, char *v[])
+void	ft_putint(int i)
 {
-	if (4 >= c)
-		return (write(1, E_NEA, ft_strlen(E_NEA)));
-	if (c >= 7)
-		return (write(1, E_TMA, ft_strlen(E_TMA)));
-	if (not_num(v[1]) || not_num(v[2]) || not_num(v[3]) || not_num(v[4])
-		|| (c == 6 && not_num(v[5])))
-		return (write(1, E_ANN, ft_strlen(E_ANN)));
-	phl->n0phl = ft_atoi(v[1]);
-	phl->t2die = ft_atoi(v[2]);
-	phl->t2eat = ft_atoi(v[3]);
-	phl->t2slp = ft_atoi(v[4]);
-	if (c == 6)
-		phl->n0eat = ft_atoi(v[5]);
+	if (i <= -1)
+	{
+		ft_putchar('-');
+		if (i == -2147483648)
+			write(1, "2147483648", 10);
+		else
+			ft_putint(i * -1);
+	}
 	else
-		phl->n0eat = 0xffffffff;
+	{
+		if (i / 10)
+			ft_putint(i / 10);
+		ft_putchar(i % 10 + '0');
+	}
+}
+
+int ft_strlen(const char *str)
+{
+	int p;
+
+	p = 0;
+	while (str[p])
+		p++;
+	return (p);
+}
+
+int	not_num(const char *str)
+{
+	int p;
+
+	p = 0;
+	while (str[p])
+	{
+		if (str[p] < '0' || str[p] > '9')
+			return (1);
+		p++;
+	}
 	return (0);
 }
 
-int main(int c, char *v[])
+int	ft_atoi(const char *str)
 {
-	t_phl	phl;
+	const char	sgn = 1 - (*str == '-') * 2;
+	int			ret;
 
-	if (init_phl(&phl, c, v))
-		return (-1);
-	if (alloc_phl(&phl, c, v))
-		returb (-1);
-	return (0);
+	ret = 0;
+	str += (*str == '-' || *str == '+');
+	while (*str == '0')
+		str++;
+	while ((*str >= '0' && *str <= '9' && ret <= 214748363)
+		|| (*str >= '0' && *str <= '7' && ret == 214748364))
+	{
+		ret *= 10;
+		ret += *str - '0';
+		str++;
+	}
+	if (*str >= '0' && *str <= '9')
+	{
+		if (sgn == 1)
+			return (2147483647);
+		return (-2147483648);
+	}
+	return (ret * sgn);
 }
