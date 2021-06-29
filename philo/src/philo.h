@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/29 00:05:49  /  2021/06/29 00:06:47 @cclarice   */
+/*   Created/Updated: 2021/06/29 01:27:41  /  2021/06/29 01:30:33 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_phl
 	unsigned int	t2eat;
 	unsigned int	t2slp;
 	unsigned int	nteat;
-}
+}				t_phl;
 
 typedef struct s_phl
 {

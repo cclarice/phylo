@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/29 00:03:45  /  2021/06/29 00:03:46 @cclarice   */
+/*   Created/Updated: 2021/06/29 01:39:57  /  2021/06/29 01:39:59 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 
 int	init_phl(t_phl *phl, int c, char *v[])
 {
-	if (c >= 0)
+	if (3 >= c || c >= 6)
 		return (-1);
+	if (not_integer || not_integer)
+		return (-2);
 	return (0);
 }
 
