@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/04 02:02:29  /  2021/07/04 02:02:52 @cclarice   */
+/*   Created/Updated: 2021/07/04 04:18:15  /  2021/07/04 04:18:19 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@
 # define E_TMA "Error: Too much arguments\n"
 # define E_ANN "Error: One of arguments is not unsigned number\n"
 # define E_MAE "Error: Memory allocate error\n"
+# define TRUE 1
+# define FALSE 0
+# define ERROR 1
+# define OK 0
 
 # include <sys/time.h>
 # include <pthread.h>
@@ -44,55 +48,47 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef struct s_elm
+typedef pthread_mutex_t	t_mutex;
+typedef pthread_t		t_pthrd;
+typedef	s_philo			t_philo;
+typedef	s_param			t_param;
+typedef struct timeval	t_time;
+
+struct t_param
 {
-	struct timeval	time;
-	unsigned int	n0eat;
-	unsigned int	id;
-	unsigned int	fid[2];
-	struct s_phl	*p;
-}				t_elm;
+	int		timetodie;
+	int		numofphilo;
+	int		timetoeat;
+	int		timetosleep;
+	int		numofeating;
+	int		allalive;
+	int		flagnumeat;
+	t_time	timestamp;
+	t_mutex	mut_numofeating;
+	t_mutex	mut_canwritealive;
+	t_pthrd	deadcheck;
+}
 
-/*
-	Struct Philo
-
-	n0phl - number_of_philosophers
-	t2die - time_to_die
-	t2eat - time_to_eat
-	t2slp - time_to_sleep
-	n0eat - [number_of_times_each_philosopher_must_eat] 
-*/
-
-typedef struct s_phl
+struct s_philo
 {
-	unsigned int	n0phl;
-	unsigned int	t2die;
-	unsigned int	t2eat;
-	unsigned int	t2slp;
-	unsigned int	n0eat;
-	unsigned int	*frks;
-	pthread_mutex_t *mfrk;
-	pthread_mutex_t mwrt;
-	struct timeval	time;
-	pthread_t		*thrd;
-	t_elm			*phls;
-}				t_phl;
+	int		id;
+	t_time	eat;
+	t_mutex	right;
+	t_mutex	left;
+	int		count;
+	t_philo	next;
+	t_param	param;
+}
 
-// Philo
-void	philo(t_phl *phl);
+// args.c
+int args()
 
+// utils_args.c
+int	not_num(const char *str);
+int	ft_atoi(const char *str);
 
-// Write
-void	s_frk(suseconds_t time, unsigned int id, t_phl *phl);
-void	s_eat(suseconds_t time, unsigned int id, t_phl *phl);
-void	s_slp(suseconds_t time, unsigned int id, t_phl *phl);
-void	s_thk(suseconds_t time, unsigned int id, t_phl *phl);
-void	s_die(struct timeval time, unsigned int id, t_phl *phl);
-
-// Utils
-void	ft_putuint(int i);
-int 	ft_strlen(const char *str);
-int		not_num(const char *str);
-int		ft_atoi(const char *str);
+// time_utils.c
+int	gettime(t_time timestamp);
+int sleepto(t_time timestamp, int sleeptime);
 
 #endif
