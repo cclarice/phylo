@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   utils_args.c                             cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/04 03:51:26  /  2021/07/04 03:51:27 @cclarice   */
+/*   Created/Updated: 2021/07/05 21:32:01  /  2021/07/05 21:32:04 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	not_num(const char *str)
 	while (str[p])
 	{
 		if (str[p] < '0' || str[p] > '9')
-			return (1);
+			return (TRUE);
 		p++;
 	}
-	return (0);
+	return (FALSE);
 }
 
 int	ft_atoi(const char *str)

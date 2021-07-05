@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   args.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/04 04:01:22  /  2021/07/04 04:01:27 @cclarice   */
+/*   Created/Updated: 2021/07/05 21:32:49  /  2021/07/05 21:32:51 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	args_check(int c, char *v[], t_param* param)
 
 int	args_parce(int c, char *v[], t_param* param)
 {
+	if ()
 	return (OK);
 }
 

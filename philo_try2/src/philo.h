@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/04 04:18:15  /  2021/07/04 04:18:19 @cclarice   */
+/*   Created/Updated: 2021/07/05 21:51:47  /  2021/07/05 21:51:48 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ struct t_param
 	t_mutex	mut_numofeating;
 	t_mutex	mut_canwritealive;
 	t_pthrd	deadcheck;
+	t_philo philo;
 }
 
 struct s_philo
@@ -81,7 +82,7 @@ struct s_philo
 }
 
 // args.c
-int args()
+int	args(int c, char *v[], t_param* param);
 
 // utils_args.c
 int	not_num(const char *str);

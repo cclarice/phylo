@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   philo.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/04 04:05:26  /  2021/07/04 04:05:31 @cclarice   */
+/*   Created/Updated: 2021/07/05 21:50:26  /  2021/07/05 21:51:18 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	main(int c, char *v[])
 	t_param param;
 
 	if (args(--c, ++v, &param))
-		return (ERROR)
+		return (ERROR);
 	if (init(&param))
-		return (ERROR)
+		return (ERROR);
 	if (life(&param))
 	return (OK);
 }
