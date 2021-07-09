@@ -12,10 +12,13 @@
 /*                                                                            */
 /*   life.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/04 04:19:49  /  2021/07/04 04:19:51 @cclarice   */
+/*   Created/Updated: 2021/07/08 20:46:02  /  2021/07/08 20:46:05 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	life();
+int	life()
+{
+	return (OK);
+}

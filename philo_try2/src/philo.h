@@ -12,11 +12,11 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/05 21:51:47  /  2021/07/05 21:51:48 @cclarice   */
+/*   Created/Updated: 2021/07/08 20:48:45  /  2021/07/08 20:51:14 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
+/*                                                                            *\
 	Program name		philo
 	Turn in files		philo/
 	Makefile			Yes
@@ -28,7 +28,7 @@
 						pthread_mutex_destroy, pthread_mutex_lock,
 						pthread_mutex_unlock
 	Description			philosopher with threads and mutex
-*/
+\*                                                                            */
 
 #ifndef PUSHSWAP_H
 # define PUSHSWAP_H
@@ -50,11 +50,11 @@
 
 typedef pthread_mutex_t	t_mutex;
 typedef pthread_t		t_pthrd;
-typedef	s_philo			t_philo;
-typedef	s_param			t_param;
+typedef	struct s_philo	t_philo;
+typedef	struct s_param	t_param;
 typedef struct timeval	t_time;
 
-struct t_param
+struct s_param
 {
 	int		timetodie;
 	int		numofphilo;
@@ -67,8 +67,8 @@ struct t_param
 	t_mutex	mut_numofeating;
 	t_mutex	mut_canwritealive;
 	t_pthrd	deadcheck;
-	t_philo philo;
-}
+	t_philo *philo;
+};
 
 struct s_philo
 {
@@ -77,9 +77,9 @@ struct s_philo
 	t_mutex	right;
 	t_mutex	left;
 	int		count;
-	t_philo	next;
+	t_philo	*next;
 	t_param	param;
-}
+};
 
 // args.c
 int	args(int c, char *v[], t_param* param);

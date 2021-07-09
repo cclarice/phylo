@@ -12,8 +12,13 @@
 /*                                                                            */
 /*   init.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/04 04:04:16  /  2021/07/04 04:04:25 @cclarice   */
+/*   Created/Updated: 2021/07/08 20:46:11  /  2021/07/08 20:46:15 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	init()
+{
+	return (OK);
+}

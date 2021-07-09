@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   utils_time.c                             cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/04 04:17:55  /  2021/07/05 21:31:29 @cclarice   */
+/*   Created/Updated: 2021/07/08 21:01:57  /  2021/07/08 22:15:29 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int sleepto(t_time timestamp, int sleeptime)
 {
 	int	until;
 
-	until = gettime(timestamp); + sleeptime;
+	until = gettime(timestamp) + sleeptime;
 	while (until > gettime(timestart))
 		usleep(100);
 	return (OK);

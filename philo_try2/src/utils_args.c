@@ -12,11 +12,25 @@
 /*                                                                            */
 /*   utils_args.c                             cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/05 21:32:01  /  2021/07/05 21:32:04 @cclarice   */
+/*   Created/Updated: 2021/07/08 22:16:47  /  2021/07/09 15:05:16 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	string_len(const char *str)
+{
+	int i;
+
+	i = 0;
+
+}
+
+int	ww(const char *str)
+{
+	write(1)
+	return (OK);
+}
 
 int	not_num(const char *str)
 {
