@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   utils_time.c                             cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/08 21:01:57  /  2021/07/08 22:15:29 @cclarice   */
+/*   Created/Updated: 2021/07/09 23:14:26  /  2021/07/09 23:14:26 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	gettime(t_time timestamp)
 	t_time	time;
 
 	gettimeofday(&time, NULL);
-	time_ms = ((time.tv_sec - timestart.tv_sec) * 1000)
-			+ ((time.tv_usec - timestart.tv_usec) / 1000);
+	time_ms = ((time.tv_sec - timestamp.tv_sec) * 1000)
+			+ ((time.tv_usec - timestamp.tv_usec) / 1000);
 	return (time_ms);
 }
 
@@ -34,7 +34,7 @@ int sleepto(t_time timestamp, int sleeptime)
 	int	until;
 
 	until = gettime(timestamp) + sleeptime;
-	while (until > gettime(timestart))
+	while (until > gettime(timestamp))
 		usleep(100);
 	return (OK);
 }

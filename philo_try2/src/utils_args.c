@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   utils_args.c                             cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/08 22:16:47  /  2021/07/09 15:05:16 @cclarice   */
+/*   Created/Updated: 2021/07/09 22:50:00  /  2021/07/09 22:50:00 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,17 @@ int	string_len(const char *str)
 	int i;
 
 	i = 0;
-
+	while (*str++)
+		i++;
+	return (i);
 }
 
-int	ww(const char *str)
+int	wrt_err(const char *str)
 {
-	write(1)
-	return (OK);
+	write(1, "Error: ", 7);
+	write(1, str, string_len(str));
+	write(1, "!\n", 2);
+	return (ERROR);
 }
 
 int	not_num(const char *str)

@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/08 20:48:45  /  2021/07/08 20:51:14 @cclarice   */
+/*   Created/Updated: 2021/07/09 23:59:04  /  2021/07/09 23:59:05 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@
 	Description			philosopher with threads and mutex
 \*                                                                            */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
-
+#ifndef PHILO_H
+# define PHILO_H
+# define T ?
+# define R =
 # define E_NEA "Error: Not enough arguments\n"
 # define E_TMA "Error: Too much arguments\n"
 # define E_ANN "Error: One of arguments is not unsigned number\n"
@@ -50,8 +51,8 @@
 
 typedef pthread_mutex_t	t_mutex;
 typedef pthread_t		t_pthrd;
-typedef	struct s_philo	t_philo;
-typedef	struct s_param	t_param;
+typedef struct s_philo	t_philo;
+typedef struct s_param	t_param;
 typedef struct timeval	t_time;
 
 struct s_param
@@ -81,10 +82,17 @@ struct s_philo
 	t_param	param;
 };
 
-// args.c
+// amour.c
 int	args(int c, char *v[], t_param* param);
 
+// birth.c
+
+// exist.c
+
+// grave.c
+
 // utils_args.c
+int	wrt_err(const char *str);
 int	not_num(const char *str);
 int	ft_atoi(const char *str);
 

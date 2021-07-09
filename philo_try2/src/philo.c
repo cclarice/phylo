@@ -12,20 +12,28 @@
 /*                                                                            */
 /*   philo.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/07 23:13:46  /  2021/07/08 20:47:26 @cclarice   */
+/*   Created/Updated: 2021/07/09 23:49:13  /  2021/07/09 23:58:44 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+int	iR1(void)
+{
+	return (1);
+}
+
 int	main(int c, char *v[])
 {
-	t_param param;
-
-	if (args(--c, ++v, &param))
+	t_param			param;
+	
+	if (amour(--c, ++v, &param))
 		return (ERROR);
-	if (init(&param))
-		return (ERROR);
-	if (life(&param))
+//	if (birth(&param))
+//		return (ERROR);
+//	if (exist(&param))
+//		return (ERROR);
+//	if (grave(&param));
+//		return (ERROR);
 	return (OK);
 }

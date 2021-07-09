@@ -12,7 +12,7 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/07/04 04:20:48  /  2021/07/04 04:46:26 @cclarice    #
+#    Created/Updated: 2021/07/09 22:15:07  /  2021/07/09 22:15:31 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ HEAD = src/philo.h
 
 # Sources
 SRCF = src
-SRC  = philo.c args.c init.c life.c                    utils_time.c utils_args.c
+SRC  = amour.c birth.c exist.c grave.c     philo.c     utils_time.c utils_args.c
 SRCS = $(addprefix $(SRCF)/, $(SRC))
 
 # Objects
@@ -30,7 +30,7 @@ OBJF = obj
 OBJS = $(patsubst $(SRCF)/%.c, $(OBJF)/%.o, $(SRCS))
 
 # Compile
-FLAG = -Wall -Wextra -Werror -O3
+FLAG = -Wall -Wextra -O3 #-Werror
 MKDR = mkdir -p
 SAY  = echo -e
 RM   = rm -rf
