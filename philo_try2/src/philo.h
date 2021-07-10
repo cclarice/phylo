@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/10 15:11:58  /  2021/07/10 15:20:51 @cclarice   */
+/*   Created/Updated: 2021/07/11 00:39:22  /  2021/07/11 00:39:27 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,13 @@ struct s_param
 struct s_philo
 {
 	int		id;
-	t_time	eat;
-	t_mutex	right;
-	t_mutex	left;
 	int		count;
+	t_time	timestamp;
+	t_mutex	*left;
+	t_mutex	*right;
+	t_pthrd thread;
+	t_param	*param;
 	t_philo	*next;
-	t_param	param;
 };
 
 // *.c
