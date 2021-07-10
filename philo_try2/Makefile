@@ -12,7 +12,7 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/07/09 22:15:07  /  2021/07/09 22:15:31 @cclarice    #
+#    Created/Updated: 2021/07/10 01:23:40  /  2021/07/10 15:22:35 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ CC   = clang
 all: $(OBJF) $(NAME)
 
 $(OBJF):
-	@if [ ! -a "${OBJF}" ]; then $(MKDR) $(OBJF); $(MKDR) $(OBJFS) ;\
+	@if [ ! -a "${OBJF}" ]; then $(MKDR) $(OBJF);\
 	$(SAY) "Created \033[33m$(OBJF) $(OBJFS)\033[0m"; fi
 
 obj/%.o: src/%.c $(HEAD)

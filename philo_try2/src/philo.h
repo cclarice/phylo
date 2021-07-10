@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/09 23:59:04  /  2021/07/09 23:59:05 @cclarice   */
+/*   Created/Updated: 2021/07/10 15:11:58  /  2021/07/10 15:20:51 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,12 @@ typedef struct timeval	t_time;
 
 struct s_param
 {
-	int		timetodie;
 	int		numofphilo;
+	int		timetodie;
 	int		timetoeat;
 	int		timetosleep;
 	int		numofeating;
 	int		allalive;
-	int		flagnumeat;
 	t_time	timestamp;
 	t_mutex	mut_numofeating;
 	t_mutex	mut_canwritealive;
@@ -82,14 +81,11 @@ struct s_philo
 	t_param	param;
 };
 
-// amour.c
-int	args(int c, char *v[], t_param* param);
-
-// birth.c
-
-// exist.c
-
-// grave.c
+// *.c
+int	amour(int c, char *v[], t_param *param);
+int	birth(t_param *param);
+int	exist(t_param *param);
+int	grave(t_param *param);
 
 // utils_args.c
 int	wrt_err(const char *str);

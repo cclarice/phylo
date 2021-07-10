@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   utils_args.c                             cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/09 22:50:00  /  2021/07/09 22:50:00 @cclarice   */
+/*   Created/Updated: 2021/07/10 02:14:13  /  2021/07/10 14:57:38 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	string_len(const char *str)
 	int i;
 
 	i = 0;
-	while (*str++)
+	while (str[i])
 		i++;
 	return (i);
 }
@@ -32,7 +32,7 @@ int	wrt_err(const char *str)
 {
 	write(1, "Error: ", 7);
 	write(1, str, string_len(str));
-	write(1, "!\n", 2);
+	write(1, "\n", 1);
 	return (ERROR);
 }
 
@@ -41,6 +41,8 @@ int	not_num(const char *str)
 	int p;
 
 	p = 0;
+	if (str[p] == '-' || str[p] == '+')
+		p++;
 	while (str[p])
 	{
 		if (str[p] < '0' || str[p] > '9')

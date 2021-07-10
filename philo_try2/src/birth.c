@@ -12,13 +12,26 @@
 /*                                                                            */
 /*   birth.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/09 22:06:41  /  2021/07/09 22:06:48 @cclarice   */
+/*   Created/Updated: 2021/07/10 16:14:12  /  2021/07/10 16:14:12 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+int new_elem(t_param *param)
+{
+	t_elem *elem;
+	return ()
+}
+
+int	alloc_philo(t_param *param)
+{
+	return (OK);
+}
+
 int	birth(t_param *param)
 {
+	if (alloc_philo(param))
+		return (ERROR);
 	return (OK);
 }
