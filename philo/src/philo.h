@@ -12,11 +12,11 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/04 02:02:29  /  2021/07/04 02:02:52 @cclarice   */
+/*   Created/Updated: 2021/07/17 22:31:58  /  2021/07/17 22:31:59 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
+/*                                                                            *\
 	Program name		philo
 	Turn in files		philo/
 	Makefile			Yes
@@ -28,15 +28,21 @@
 						pthread_mutex_destroy, pthread_mutex_lock,
 						pthread_mutex_unlock
 	Description			philosopher with threads and mutex
-*/
+\*                                                                            */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
-
+#ifndef PHILO_H
+# define PHILO_H
+# define T ?
+# define R =
 # define E_NEA "Error: Not enough arguments\n"
 # define E_TMA "Error: Too much arguments\n"
 # define E_ANN "Error: One of arguments is not unsigned number\n"
 # define E_MAE "Error: Memory allocate error\n"
+# define TRUE 1
+# define FALSE 0
+# define ERROR 1
+# define OK 0
+# define STRUCT struct
 
 # include <sys/time.h>
 # include <pthread.h>
@@ -44,55 +50,52 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef struct s_elm
+typedef pthread_mutex_t	t_mutex;
+typedef pthread_t		t_pthrd;
+typedef struct s_philo	t_philo;
+typedef struct s_param	t_param;
+typedef STRUCT timeval	t_time;
+
+struct s_param
 {
-	struct timeval	time;
-	unsigned int	n0eat;
-	unsigned int	id;
-	unsigned int	fid[2];
-	struct s_phl	*p;
-}				t_elm;
+	int		numofphilo;
+	int		timetodie;
+	int		timetoeat;
+	int		timetosleep;
+	int		numofeating;
+	int		allalive;
+	t_time	timestamp;
+	t_mutex	*mut_canwritealive;
+	t_pthrd	deadcheck;
+	t_philo	*philo;
+};
 
-/*
-	Struct Philo
-
-	n0phl - number_of_philosophers
-	t2die - time_to_die
-	t2eat - time_to_eat
-	t2slp - time_to_sleep
-	n0eat - [number_of_times_each_philosopher_must_eat] 
-*/
-
-typedef struct s_phl
+struct s_philo
 {
-	unsigned int	n0phl;
-	unsigned int	t2die;
-	unsigned int	t2eat;
-	unsigned int	t2slp;
-	unsigned int	n0eat;
-	unsigned int	*frks;
-	pthread_mutex_t *mfrk;
-	pthread_mutex_t mwrt;
-	struct timeval	time;
-	pthread_t		*thrd;
-	t_elm			*phls;
-}				t_phl;
+	int		id;
+	int		count;
+	t_time	timestamp;
+	t_mutex	*left;
+	t_mutex	*right;
+	t_pthrd	thread;
+	t_param	*param;
+	t_philo	*next;
+};
 
-// Philo
-void	philo(t_phl *phl);
+// *.c
+int	amour(int c, char *v[], t_param *param);
+int	birth(t_param *param);
+int	exist(t_param *param);
+int	grave(t_param *param);
 
+// utils_args.c
+int	say(t_philo *philo, char *message);
+int	wrt_err(const char *str);
+int	not_num(const char *str);
+int	ft_atoi(const char *str);
 
-// Write
-void	s_frk(suseconds_t time, unsigned int id, t_phl *phl);
-void	s_eat(suseconds_t time, unsigned int id, t_phl *phl);
-void	s_slp(suseconds_t time, unsigned int id, t_phl *phl);
-void	s_thk(suseconds_t time, unsigned int id, t_phl *phl);
-void	s_die(struct timeval time, unsigned int id, t_phl *phl);
-
-// Utils
-void	ft_putuint(int i);
-int 	ft_strlen(const char *str);
-int		not_num(const char *str);
-int		ft_atoi(const char *str);
+// time_utils.c
+int	gettime(t_time timestamp);
+int	sleepto(t_time timestamp, int sleeptime);
 
 #endif

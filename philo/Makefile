@@ -12,7 +12,7 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/07/04 00:46:19  /  2021/07/04 01:48:01 @cclarice    #
+#    Created/Updated: 2021/07/17 22:29:22  /  2021/07/17 22:29:25 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ HEAD = src/philo.h
 
 # Sources
 SRCF = src
-SRC  = main.c utils.c philo.c write.c
+SRC  = amour.c birth.c exist.c grave.c     philo.c     utils_time.c utils_args.c
 SRCS = $(addprefix $(SRCF)/, $(SRC))
 
 # Objects
@@ -30,7 +30,7 @@ OBJF = obj
 OBJS = $(patsubst $(SRCF)/%.c, $(OBJF)/%.o, $(SRCS))
 
 # Compile
-FLAG = -Wall -Wextra -Werror -O3
+FLAG = -Wall -Wextra -O3 -pthread #-Werror
 MKDR = mkdir -p
 SAY  = echo -e
 RM   = rm -rf
@@ -40,7 +40,7 @@ CC   = clang
 all: $(OBJF) $(NAME)
 
 $(OBJF):
-	@if [ ! -a "${OBJF}" ]; then $(MKDR) $(OBJF); $(MKDR) $(OBJFS) ;\
+	@if [ ! -a "${OBJF}" ]; then $(MKDR) $(OBJF);\
 	$(SAY) "Created \033[33m$(OBJF) $(OBJFS)\033[0m"; fi
 
 obj/%.o: src/%.c $(HEAD)
@@ -62,3 +62,8 @@ fclean: clean
 	$(SAY) "Removing \033[31m$(NAME)\033[0m"; fi
 
 re: fclean all
+
+norm:
+	@$(SAY) "\033[33m"
+	@norminette src
+	@$(SAY) "\033[0m"
