@@ -12,7 +12,7 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/07/10 21:24:52  /  2021/07/10 23:53:01 @cclarice    #
+#    Created/Updated: 2021/07/11 01:48:47  /  2021/07/17 14:10:09 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJF = obj
 OBJS = $(patsubst $(SRCF)/%.c, $(OBJF)/%.o, $(SRCS))
 
 # Compile
-FLAG = -Wall -Wextra -O3 #-Werror
+FLAG = -Wall -Wextra -O3 -pthread #-Werror
 MKDR = mkdir -p
 SAY  = echo -e
 RM   = rm -rf

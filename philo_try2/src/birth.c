@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   birth.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/11 00:08:37  /  2021/07/11 00:21:26 @cclarice   */
+/*   Created/Updated: 2021/07/17 15:08:50  /  2021/07/17 15:09:05 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	mutex_philo(t_param *param)
 	while (philo_ptr)
 	{
 		philo_ptr->right = malloc(sizeof(t_mutex));
-		if (pthread_mutex_init(philo_ptr->right, NULL) || !philo_ptr->right)
+		if (!philo_ptr->right || pthread_mutex_init(philo_ptr->right, NULL))
 			return (ERROR);
 		if (philo_ptr->next)
 			philo_ptr->next->left = philo_ptr->right;
@@ -68,6 +68,8 @@ int	mutex_philo(t_param *param)
 			param->philo->left = philo_ptr->right;
 		philo_ptr = philo_ptr->next;
 	}
+	param->mut_canwritealive = malloc(sizeof(t_mutex));
+	if (pthread_mutex_init(param->mut_canwritealive, NULL))
 	return (OK);
 }
 

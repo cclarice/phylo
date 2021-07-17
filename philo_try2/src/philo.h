@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/11 00:39:22  /  2021/07/11 00:39:27 @cclarice   */
+/*   Created/Updated: 2021/07/17 15:07:15  /  2021/07/17 15:07:28 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ struct s_param
 	int		numofeating;
 	int		allalive;
 	t_time	timestamp;
-	t_mutex	mut_numofeating;
-	t_mutex	mut_canwritealive;
+	t_mutex	*mut_canwritealive;
 	t_pthrd	deadcheck;
 	t_philo *philo;
 };
