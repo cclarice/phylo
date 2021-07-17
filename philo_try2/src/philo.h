@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   philo.h                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/17 15:07:15  /  2021/07/17 15:07:28 @cclarice   */
+/*   Created/Updated: 2021/07/17 22:31:58  /  2021/07/17 22:31:59 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define FALSE 0
 # define ERROR 1
 # define OK 0
+# define STRUCT struct
 
 # include <sys/time.h>
 # include <pthread.h>
@@ -53,7 +54,7 @@ typedef pthread_mutex_t	t_mutex;
 typedef pthread_t		t_pthrd;
 typedef struct s_philo	t_philo;
 typedef struct s_param	t_param;
-typedef struct timeval	t_time;
+typedef STRUCT timeval	t_time;
 
 struct s_param
 {
@@ -66,7 +67,7 @@ struct s_param
 	t_time	timestamp;
 	t_mutex	*mut_canwritealive;
 	t_pthrd	deadcheck;
-	t_philo *philo;
+	t_philo	*philo;
 };
 
 struct s_philo
@@ -76,7 +77,7 @@ struct s_philo
 	t_time	timestamp;
 	t_mutex	*left;
 	t_mutex	*right;
-	t_pthrd thread;
+	t_pthrd	thread;
 	t_param	*param;
 	t_philo	*next;
 };
@@ -88,12 +89,13 @@ int	exist(t_param *param);
 int	grave(t_param *param);
 
 // utils_args.c
+int	say(t_philo *philo, char *message);
 int	wrt_err(const char *str);
 int	not_num(const char *str);
 int	ft_atoi(const char *str);
 
 // time_utils.c
 int	gettime(t_time timestamp);
-int sleepto(t_time timestamp, int sleeptime);
+int	sleepto(t_time timestamp, int sleeptime);
 
 #endif

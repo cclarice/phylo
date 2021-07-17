@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   utils_args.c                             cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/10 02:14:13  /  2021/07/10 14:57:38 @cclarice   */
+/*   Created/Updated: 2021/07/10 21:24:52  /  2021/07/17 21:05:10 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 int	string_len(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -38,7 +38,7 @@ int	wrt_err(const char *str)
 
 int	not_num(const char *str)
 {
-	int p;
+	int	p;
 
 	p = 0;
 	if (str[p] == '-' || str[p] == '+')

@@ -12,7 +12,7 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/07/11 01:48:47  /  2021/07/17 14:10:09 @cclarice    #
+#    Created/Updated: 2021/07/17 22:29:22  /  2021/07/17 22:29:25 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,3 +62,8 @@ fclean: clean
 	$(SAY) "Removing \033[31m$(NAME)\033[0m"; fi
 
 re: fclean all
+
+norm:
+	@$(SAY) "\033[33m"
+	@norminette src
+	@$(SAY) "\033[0m"

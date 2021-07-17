@@ -12,21 +12,11 @@
 /*                                                                            */
 /*   philo.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/10 21:24:52  /  2021/07/10 21:28:29 @cclarice   */
+/*   Created/Updated: 2021/07/17 20:33:42  /  2021/07/17 20:33:48 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	temp(t_param *param)
-{
-	printf("numofphilo:  %-5d\n", param->numofphilo);
-	printf("timetodie:   %-5d\n", param->timetodie);
-	printf("timetoeat:   %-5d\n", param->timetoeat);
-	printf("timetosleep: %-5d\n", param->timetosleep);
-	printf("numofeating: %-5d\n", param->numofeating);
-	return (OK);
-}
 
 int	main(int c, char *v[])
 {
@@ -34,7 +24,6 @@ int	main(int c, char *v[])
 
 	if (amour(--c, ++v, &param))
 		return (ERROR);
-	temp(&param);
 	if (birth(&param))
 		return (ERROR);
 	if (exist(&param))

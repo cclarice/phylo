@@ -12,18 +12,21 @@
 /*                                                                            */
 /*   exist.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/17 15:31:46  /  2021/07/17 15:31:52 @cclarice   */
+/*   Created/Updated: 2021/07/17 22:31:50  /  2021/07/17 22:31:51 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	sleep_until_all_starts(t_philo *philo)
+int	say(t_philo *philo, char *message)
 {
-	printf("Philo %d Wait Until Start\n", philo->id);
-	while (philo->param->allalive == -1)
-		usleep(100);
-	printf("Philo %d Started\n", philo->id);
+	int	id;
+
+	id = philo->id + 1;
+	pthread_mutex_lock(philo->param->mut_canwritealive);
+	printf("%-9d %d %s\n", gettime(philo->param->timestamp), id, message);
+	pthread_mutex_unlock(philo->param->mut_canwritealive);
+	return (OK);
 }
 
 void	eat(t_philo *philo)
@@ -31,16 +34,18 @@ void	eat(t_philo *philo)
 	if ((philo->id % 2))
 	{
 		pthread_mutex_lock(philo->left);
+		say(philo, "has taken a fork");
 		pthread_mutex_lock(philo->right);
+		say(philo, "has taken a fork");
 	}
 	else
 	{
 		pthread_mutex_lock(philo->right);
+		say(philo, "has taken a fork");
 		pthread_mutex_lock(philo->left);
+		say(philo, "has taken a fork");
 	}
-	printf("%d %d has taken a fork\n", gettime(philo->param->timestamp), philo->id + 1);
-	printf("%d %d has taken a fork\n", gettime(philo->param->timestamp), philo->id + 1);
-	printf("%d %d is eating\n", gettime(philo->param->timestamp), philo->id + 1);
+	say(philo, "is eating");
 	gettimeofday(&philo->timestamp, NULL);
 	sleepto(philo->timestamp, philo->param->timetoeat);
 	pthread_mutex_unlock(philo->left);
@@ -49,23 +54,29 @@ void	eat(t_philo *philo)
 
 void	*life(void *philo_ptr)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)philo_ptr;
-	sleep_until_all_starts(philo);
+	while (philo->param->allalive == -1)
+		usleep(100);
+	philo->count = 0;
 	while (philo->param->allalive)
 	{
+		if (philo->param->numofeating != -1)
+			if (philo->param->numofeating == philo->count)
+				return (NULL);
 		eat(philo);
-		printf("%d %d is sleeping\n", gettime(philo->param->timestamp), philo->id + 1);
+		philo->count++;
+		say(philo, "is sleeping");
 		sleepto(philo->timestamp, philo->param->timetosleep);
-		printf("%d %d is thinking\n", gettime(philo->param->timestamp), philo->id + 1);
+		say(philo, "is thinking");
 	}
 	return (NULL);
 }
 
-int thread_philo(t_param *param)
+int	thread_philo(t_param *param)
 {
-	t_philo *philo_ptr;
+	t_philo	*philo_ptr;
 
 	philo_ptr = param->philo;
 	while (philo_ptr)
@@ -78,10 +89,10 @@ int thread_philo(t_param *param)
 	philo_ptr = param->philo;
 	while (philo_ptr)
 	{
-		if ((pthread_join(philo_ptr->thread, NULL)))
-			return (ERROR);
+		pthread_join(philo_ptr->thread, NULL);
 		philo_ptr = philo_ptr->next;
 	}
+	param->allalive = 0;
 	return (OK);
 }
 

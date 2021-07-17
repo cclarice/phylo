@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   birth.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/17 15:08:50  /  2021/07/17 15:09:05 @cclarice   */
+/*   Created/Updated: 2021/07/17 22:27:54  /  2021/07/17 22:27:59 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 t_philo	*new_philo(t_param *param, int id)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = malloc(sizeof(t_philo));
 	if (!philo)
@@ -70,19 +70,7 @@ int	mutex_philo(t_param *param)
 	}
 	param->mut_canwritealive = malloc(sizeof(t_mutex));
 	if (pthread_mutex_init(param->mut_canwritealive, NULL))
-	return (OK);
-}
-
-int	temp1(t_param *param)
-{
-	t_philo *philo_ptr;
-
-	philo_ptr = param->philo;
-	while (philo_ptr)
-	{
-		printf("Philo %d\n", philo_ptr->id);
-		philo_ptr = philo_ptr->next;
-	}
+		return (ERROR);
 	return (OK);
 }
 
@@ -92,6 +80,5 @@ int	birth(t_param *param)
 		return (wrt_err("Malloc Error!"));
 	if (mutex_philo(param))
 		return (wrt_err("Mutex Error!"));
-	temp1(param);
 	return (OK);
 }
