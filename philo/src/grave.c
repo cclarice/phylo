@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   grave.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/17 22:27:07  /  2021/07/17 22:31:10 @cclarice   */
+/*   Created/Updated: 2021/07/17 23:01:46  /  2021/07/17 23:02:42 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
 int	all_not_eaten(t_param *param, t_philo *philo)
 {
 	philo = param->philo;
+	if (param->numofeating == -1)
+		return (TRUE);
 	while (philo)
 	{
-		if (philo->param->numofeating != philo->count)
+		if (param->numofeating != philo->count)
 			return (TRUE);
 		philo = philo->next;
 	}
@@ -43,7 +45,6 @@ void	death_check(t_param *param, t_philo *philo)
 			if ((gettime(philo->timestamp) - gettime(time)) > param->timetodie
 				&& philo->param->numofeating != philo->count)
 			{
-				pthread_mutex_lock(param->mut_canwritealive);
 				param->allalive = 0;
 				say(philo, "died");
 			}

@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   exist.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/17 22:31:50  /  2021/07/17 22:31:51 @cclarice   */
+/*   Created/Updated: 2021/07/17 23:02:31  /  2021/07/17 23:02:33 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	say(t_philo *philo, char *message)
 	id = philo->id + 1;
 	pthread_mutex_lock(philo->param->mut_canwritealive);
 	printf("%-9d %d %s\n", gettime(philo->param->timestamp), id, message);
-	pthread_mutex_unlock(philo->param->mut_canwritealive);
+	if (message[0] != 'd')
+		pthread_mutex_unlock(philo->param->mut_canwritealive);
 	return (OK);
 }
 

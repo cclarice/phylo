@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   utils_time.c                             cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/17 22:30:53  /  2021/07/17 22:30:54 @cclarice   */
+/*   Created/Updated: 2021/07/17 23:38:07  /  2021/07/17 23:39:24 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ int	sleepto(t_time timestamp, int sleeptime)
 
 	until = gettime(timestamp) + sleeptime;
 	while (until > gettime(timestamp))
-		usleep(250);
+		usleep(275);
 	return (OK);
 }
