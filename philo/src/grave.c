@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   grave.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/17 23:01:46  /  2021/07/17 23:02:42 @cclarice   */
+/*   Created/Updated: 2021/07/22 17:39:20  /  2021/07/22 17:39:22 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ void	death_check(t_param *param, t_philo *philo)
 		gettimeofday(&time, NULL);
 		while (philo && param->allalive)
 		{
-			if ((gettime(philo->timestamp) - gettime(time)) > param->timetodie
+			if ((gettime(philo->timestamp) - gettime(time)) > param->timetodie + 5
 				&& philo->param->numofeating != philo->count)
 			{
 				param->allalive = 0;
 				say(philo, "died");
 			}
 			philo = philo->next;
-			usleep(100);
 		}
+		usleep(100);
 	}
 }
 

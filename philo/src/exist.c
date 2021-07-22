@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   exist.c                                  cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/07/19 20:09:44  /  2021/07/19 20:11:16 @cclarice   */
+/*   Created/Updated: 2021/07/22 16:35:02  /  2021/07/22 16:38:33 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	*life(void *philo_ptr)
 
 	philo = (t_philo *)philo_ptr;
 	while (philo->param->allalive == -1)
-		usleep(100 + 100 * philo->id);
+		usleep(25);
+	usleep(50 * philo->id);
 	philo->count = 0;
 	while (philo->param->allalive)
 	{
