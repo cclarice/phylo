@@ -42,8 +42,8 @@ void	death_check(t_param *param, t_philo *philo)
 		gettimeofday(&time, NULL);
 		while (philo && param->allalive)
 		{
-			if ((gettime(philo->timestamp) - gettime(time)) > param->timetodie + 5
-				&& philo->param->numofeating != philo->count)
+			if ((gettime(philo->timestamp) - gettime(time)) > param->timetodie
+				+ 5 && philo->param->numofeating != philo->count)
 			{
 				param->allalive = 0;
 				say(philo, "died");
